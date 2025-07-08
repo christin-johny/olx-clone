@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider,signOut } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 
@@ -18,6 +18,14 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
 const fireStore = getFirestore(app);
+const logout = async () => {
+  try {
+    await signOut(auth);
+    console.log("User signed out successfully");
+  } catch (error) {
+    console.error("Error signing out:", error);
+  }
+};
 
 const fetchFromFireStore = async () => {
   try {
@@ -35,4 +43,4 @@ const fetchFromFireStore = async () => {
   }
 };
 
-export { auth, provider, storage, fireStore, fetchFromFireStore };
+export { auth,logout, provider, storage, fireStore, fetchFromFireStore };

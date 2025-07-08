@@ -11,7 +11,11 @@ const Card = ({items}) => {
 
       <div  className='grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pt-5' >
         {items.map((item)=> (
-           
+          <Link 
+           to={'/details'}  
+           state={{item}}  
+           key={item.id}   
+           style={{ borderWidth: '1px', borderColor:'lightgrey'}}> 
 
           <div key={item.id}  
           style={{borderWidth: '1px', borderColor: 'lightgray'}} 
@@ -40,7 +44,8 @@ const Card = ({items}) => {
 
             </div>
           </div>
-          
+          </Link>
+
         ))}
 
       </div>

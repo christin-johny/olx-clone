@@ -10,14 +10,11 @@ import { fetchFromFireStore } from '../Firebase/Firebase';
 
 const Home = () => {
     const [openModal,setModal] = useState(false);
-    const [openModalSell,setModalSell] = useState(false);
+    
 
     const toggleModal = ()=>{
         setModal(!openModal);
     }
-
-    const toggleModalSell =()=>{setModalSell(!openModalSell)}
-
 
     const itemCtx = ItemsContext();
 
@@ -26,7 +23,6 @@ const Home = () => {
         const datas = await fetchFromFireStore();
         itemCtx?.setItems(datas);
       }
-
       getItems();
     },[])
 
@@ -40,10 +36,8 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar toggleModal={toggleModal} toggleModalSell={toggleModalSell}/>
+      <Navbar toggleModal={toggleModal}/>
       <Login toggleModal = {toggleModal}  status = {openModal} />
-      <Sell toggleModalSell={toggleModalSell} status={openModalSell} setItems={itemCtx.setItems}/>
-
       <Card items={itemCtx.items || []} />
     </div>
   )
